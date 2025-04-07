@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roblox Loadstring Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #1e1e1e;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    textarea, input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    textarea {
+      height: 100px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3c3c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #575757;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Roblox Loadstring Generator</h1>
+  <input type="text" id="urlInput" placeholder="Paste your raw script URL here">
+  <button onclick="generateLoadstring()">Generate Loadstring</button>
+  <textarea id="output" readonly placeholder="Your loadstring will appear here..."></textarea>
+
+  <script>
+    function generateLoadstring() {
+      const url = document.getElementById("urlInput").value.trim();
+      const output = document.getElementById("output");
+
+      if (!url.startsWith("http")) {
+        output.value = "Invalid URL. Must start with http or https.";
+        return;
+      }
+
+      const loadstring = `loadstring(game:HttpGet("${url}"))()`;
+      output.value = loadstring;
+    }
+  </script>
+
+</body>
+</html>
