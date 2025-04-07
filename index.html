@@ -2,46 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Roblox Loadstring Generator</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
       background: #1e1e1e;
-      color: #fff;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      padding: 20px;
+      box-sizing: border-box;
       margin-top: 50px;
     }
-    textarea, input {
-      width: 80%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 5px;
+
+    h1 {
+      font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 20px;
     }
+
+    input, textarea, button {
+      width: 100%;
+      font-size: 1em;
+      margin-bottom: 15px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    input, textarea {
+      background: #2e2e2e;
+      color: #ffffff;
+    }
+
     textarea {
-      height: 100px;
+      height: 120px;
+      resize: none;
     }
+
     button {
-      padding: 10px 20px;
       background: #3c3c3c;
-      color: white;
-      border: none;
-      border-radius: 5px;
+      color: #ffffff;
+      font-weight: bold;
       cursor: pointer;
     }
+
     button:hover {
-      background: #575757;
+      background: #505050;
     }
   </style>
 </head>
 <body>
 
-  <h1>Roblox Loadstring Generator</h1>
-  <input type="text" id="urlInput" placeholder="Paste your raw script URL here">
-  <button onclick="generateLoadstring()">Generate Loadstring</button>
-  <textarea id="output" readonly placeholder="Your loadstring will appear here..."></textarea>
+  <div class="container">
+    <h1>Roblox Loadstring Generator</h1>
+    <input type="text" id="urlInput" placeholder="Paste your raw script URL">
+    <button onclick="generateLoadstring()">Generate Loadstring</button>
+    <textarea id="output" readonly placeholder="Your loadstring will appear here..."></textarea>
+  </div>
 
   <script>
     function generateLoadstring() {
@@ -53,8 +82,7 @@
         return;
       }
 
-      const loadstring = `loadstring(game:HttpGet("${url}"))()`;
-      output.value = loadstring;
+      output.value = `loadstring(game:HttpGet("${url}"))()`;
     }
   </script>
 
